@@ -6,22 +6,22 @@ import scipy.integrate as integrate
 from ipywidgets import interact, interactive, fixed, interact_manual, widget, widgets, Layout, HBox, VBox
 
 rA = dict()
-rA['Orden -1'] = lambda x, k, cA0: (k/cA0/(1-x))
-rA['Orden 0'] = lambda x, k, cA0: k*np.ones_like(x)
-rA['Orden 1'] = lambda x, k, cA0: (k*cA0*(1-x))
-rA['Orden 2'] = lambda x, k, cA0: (k*cA0**2*(1-x)**2)
+rA['Order -1'] = lambda x, k, cA0: (k/cA0/(1-x))
+rA['Order 0'] = lambda x, k, cA0: k*np.ones_like(x)
+rA['Order 1'] = lambda x, k, cA0: (k*cA0*(1-x))
+rA['Order 2'] = lambda x, k, cA0: (k*cA0**2*(1-x)**2)
 rA['Langmuir-Hinshelwood'] = lambda x, k, cA0: (k*cA0*(1-x)*(0.5+1.2*k*cA0*(1-x))**2)
-rA['Cinetica X'] = lambda x, k, cA0: 1.0/(20*k*cA0*(x-0.6)**2+4*k)
-rA['Cinetica Y'] = lambda x, k, cA0: 1.0/(-20*k*cA0*(x-0.4)**2+8*k)
+rA['Kinetics X'] = lambda x, k, cA0: 1.0/(20*k*cA0*(x-0.6)**2+4*k)
+rA['Kinetics Y'] = lambda x, k, cA0: 1.0/(-20*k*cA0*(x-0.4)**2+8*k)
 
 FA0_rA = dict()
-FA0_rA['Orden -1'] = lambda x, k, cA0: 1/(k/cA0/(1-x))
-FA0_rA['Orden 0'] = lambda x, k, cA0: 1/k*np.ones_like(x)
-FA0_rA['Orden 1'] = lambda x, k, cA0: 1/(k*cA0*(1-x))
-FA0_rA['Orden 2'] = lambda x, k, cA0: 1/(k*cA0**2*(1-x)**2)
+FA0_rA['Order -1'] = lambda x, k, cA0: 1/(k/cA0/(1-x))
+FA0_rA['Order 0'] = lambda x, k, cA0: 1/k*np.ones_like(x)
+FA0_rA['Order 1'] = lambda x, k, cA0: 1/(k*cA0*(1-x))
+FA0_rA['Order 2'] = lambda x, k, cA0: 1/(k*cA0**2*(1-x)**2)
 FA0_rA['Langmuir-Hinshelwood'] = lambda x, k, cA0: 1/(k*cA0*(1-x)/(0.5+1.2*k*cA0*(1-x))**2)
-FA0_rA['Cinetica X'] = lambda x, k, cA0: (20*k*cA0*(x-0.6)**2+4*k)
-FA0_rA['Cinetica Y'] = lambda x, k, cA0: (-20*k*cA0*(x-0.4)**2+8*k)
+FA0_rA['Kinetics X'] = lambda x, k, cA0: (20*k*cA0*(x-0.6)**2+4*k)
+FA0_rA['Kinetics Y'] = lambda x, k, cA0: (-20*k*cA0*(x-0.4)**2+8*k)
 
 def rate(kinetics='Langmuir-hinshelwood', k=0.5):
     x=np.linspace(0.01,0.99,100)
@@ -50,7 +50,7 @@ def plot1(Reactor='CSTR', X=0.4, kinetics='Langmuir-Hinshelwood', k=0.5):
     plt.plot(x,r)
     plt.xlabel("$X_A$")
     plt.ylabel("$F_{A0}/r_A$")
-    if kinetics=='Orden -1':
+    if kinetics=='Order -1':
         TOP=5
     else:
         TOP=20
@@ -82,7 +82,7 @@ def plot2(Reactor1='CSTR', Reactor2='CSTR', X1=0.4, X2=0.8, kinetics='Langmuir-H
     plt.plot(x,r)
     plt.xlabel("$X_A$")
     plt.ylabel("$F_{A0}/r_A$")
-    if kinetics=='Orden -1':
+    if kinetics=='Order -1':
         TOP=5
     else:
         TOP=20
@@ -132,7 +132,7 @@ def plot3(Reactor1='CSTR', Reactor2='CSTR', Reactor3='CSTR', X1=0.4, X2=0.8, X3=
     plt.plot(x,r)
     plt.xlabel("$X_A$")
     plt.ylabel("$F_{A0}/r_A$")
-    if kinetics=='Orden -1':
+    if kinetics=='Order -1':
         TOP=5
     else:
         TOP=20

@@ -157,7 +157,7 @@ def checkYXmin(Y0=0.01, YL=0.1, X0=0.0):
     plt.text((X0+Xs)/2, (Y0+YL)/2, "$\\left( \\frac{L'}{G'} \\right) _{min}=%.3g$"%LpGpmin,size=10, horizontalalignment='right', verticalalignment='bottom', color='r')
     
     if X0/(HA*P*(1+X0)-X0) >= Y0:
-        plt.text(ax[1]*0.9, Y0, 'La absorción\nno es posible',size=15, horizontalalignment='right', verticalalignment='bottom', color='b', bbox=dict(boxstyle="round", ec=(1., 0.5, 0.5), fc=(1., 0.8, 0.8)))
+        plt.text(ax[1]*0.9, Y0, 'Absorption is not possible',size=15, horizontalalignment='right', verticalalignment='bottom', color='b', bbox=dict(boxstyle="round", ec=(1., 0.5, 0.5), fc=(1., 0.8, 0.8)))
     
     plt.show()
     
@@ -220,7 +220,7 @@ def checkYXopera(Y0=0.01, YL=0.1, X0=0.0, F=1.5):
     plt.text((X0+Xop)/2*0.7, (Y0+YL)/2, "$\\left( \\frac{L'}{G'} \\right)$=\n%.3g"%LpGp,size=10, horizontalalignment='center', verticalalignment='bottom', color='m')
     
     if X0/(HA*P*(1+X0)-X0) >= Y0:
-        plt.text(ax[1]*0.9, Y0, 'La absorción\nno es posible',size=15, horizontalalignment='right', verticalalignment='bottom', color='b', bbox=dict(boxstyle="round", ec=(1., 0.5, 0.5), fc=(1., 0.8, 0.8)))
+        plt.text(ax[1]*0.9, Y0, 'Absorption is not possible',size=15, horizontalalignment='right', verticalalignment='bottom', color='b', bbox=dict(boxstyle="round", ec=(1., 0.5, 0.5), fc=(1., 0.8, 0.8)))
     
     plt.show()
     
@@ -233,7 +233,7 @@ widgetYXopera=interactive(checkYXopera,
 controlsYXopera = HBox(widgetYXopera.children[:-1], layout = Layout(flex_flow='row wrap'))
 outputYXopera = widgetYXopera.children[-1]
 
-def checkYXstep(Y0=0.01, YL=0.1, X0=0.0, F=1.5, Pasos=1):
+def checkYXstep(Y0=0.01, YL=0.1, X0=0.0, F=1.5, Steps=1):
     GasA='CO2'
     plt.figure(2,figsize=(6, 4), dpi= 100)
     ax = plt.subplot(111)
@@ -282,7 +282,7 @@ def checkYXstep(Y0=0.01, YL=0.1, X0=0.0, F=1.5, Pasos=1):
         
     Possible=True    
     if X0/(HA*P*(1+X0)-X0) >= Y0:
-        plt.text(ax[1]*0.9, Y0, 'La absorción\nno es posible',size=15, horizontalalignment='right', verticalalignment='bottom', color='b', bbox=dict(boxstyle="round", ec=(1., 0.5, 0.5), fc=(1., 0.8, 0.8)))
+        plt.text(ax[1]*0.9, Y0, 'Absorption is not possible',size=15, horizontalalignment='right', verticalalignment='bottom', color='b', bbox=dict(boxstyle="round", ec=(1., 0.5, 0.5), fc=(1., 0.8, 0.8)))
         Possible=False
     
     # START solution
@@ -290,7 +290,7 @@ def checkYXstep(Y0=0.01, YL=0.1, X0=0.0, F=1.5, Pasos=1):
     YP = YL
     nTray = 0
 
-    while YP > Y0 and nTray < Pasos and Possible:
+    while YP > Y0 and nTray < Steps and Possible:
         nTray += 1
         XQ = XP   
         
@@ -311,7 +311,7 @@ def checkYXstep(Y0=0.01, YL=0.1, X0=0.0, F=1.5, Pasos=1):
 
         # create the corresponding number of labels (= the text you want to display)
         labels = []
-        labels.append("%d etapas eq."%nTray)
+        labels.append("%d eq. stages"%nTray)
         labels.append("$(L'/G')_{min}$=%.3g"%LpGpmin)
         labels.append("$(L'/G')$=%.3g"%LpGp)
 
@@ -330,7 +330,7 @@ widgetYXstep=interactive(checkYXstep,
                         YL=widgets.BoundedFloatText(value=0.1,min=0.05,max=0.2,step=0.001),
                         X0=widgets.BoundedFloatText(value=0.0,min=0.0,max=0.00001,step=0.000001),
                         F=widgets.BoundedFloatText(value=1.5,min=1.1,max=5,step=0.1),
-                        Pasos=widgets.BoundedIntText(value=1,min=1,max=50,step=1)
+                        Steps=widgets.BoundedIntText(value=1,min=1,max=50,step=1)
 )
 controlsYXstep = HBox(widgetYXstep.children[:-1], layout = Layout(flex_flow='row wrap'))
 outputYXstep = widgetYXstep.children[-1]
@@ -380,7 +380,7 @@ def checkYXfull(Gas='CO2', Y0=0.01, YL=0.1, X0=0.0, F=1.5, T=298.15, P=1):
         
     Possible=True    
     if X0/(HA*P*(1+X0)-X0) >= Y0:
-        plt.text(ax[1]*0.9, Y0, 'La absorción\nno es posible',size=15, horizontalalignment='right', verticalalignment='bottom', color='b', bbox=dict(boxstyle="round", ec=(1., 0.5, 0.5), fc=(1., 0.8, 0.8)))
+        plt.text(ax[1]*0.9, Y0, 'Absorption is not possible',size=15, horizontalalignment='right', verticalalignment='bottom', color='b', bbox=dict(boxstyle="round", ec=(1., 0.5, 0.5), fc=(1., 0.8, 0.8)))
         Possible=False
     
     # START solution
@@ -409,7 +409,7 @@ def checkYXfull(Gas='CO2', Y0=0.01, YL=0.1, X0=0.0, F=1.5, T=298.15, P=1):
 
         # create the corresponding number of labels (= the text you want to display)
         labels = []
-        labels.append("%d etapas eq."%nTray)
+        labels.append("%d eq. stages"%nTray)
         labels.append("$(L'/G')_{min}$=%.3g"%LpGpmin)
         labels.append("$(L'/G')$=%.3g"%LpGp)
 

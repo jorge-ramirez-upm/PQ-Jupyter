@@ -25,7 +25,7 @@ datatie=pd.read_csv('Water-EthylEthanoate-EthanoicAcid-TieLines.dat', sep='\s+|\
 columns_titles = [datatie.columns[1],datatie.columns[2],datatie.columns[0],datatie.columns[4],datatie.columns[5],datatie.columns[3]]
 datatie=datatie.reindex(columns=columns_titles)
 
-sense=["Como el reloj", "Contrario al reloj"]
+sense=["Clockwise", "Counterclockwise"]
 
 """
  _                                   
@@ -36,7 +36,7 @@ sense=["Como el reloj", "Contrario al reloj"]
                                |___/ 
 """
 
-def checkternary(xA=30, xB=30, Sentido="Contrario al reloj"):
+def checkternary(xA=30, xB=30, Sentido="Counterclockwise"):
 
     # Two subplots: one for ternary diagram and another one for standard axes
     ax1=plt.subplot(111)
@@ -54,7 +54,7 @@ def checkternary(xA=30, xB=30, Sentido="Contrario al reloj"):
     tax.get_axes().axis('off')
     tax.clear_matplotlib_ticks()
     # Set the ticks in the ternary axes
-    if Sentido=="Contrario al reloj":
+    if Sentido=="Counterclockwise":
         tax.ticks(axis='lbr', multiple=10, linewidth=1, offset=0.025)
     else:
         tax.ticks(axis='lbr', multiple=10, linewidth=1, offset=0.025, clockwise=True)
@@ -65,7 +65,7 @@ def checkternary(xA=30, xB=30, Sentido="Contrario al reloj"):
     tax.right_corner_label("B", fontsize=fontsize, offset=offset, fontweight='bold')
     tax.top_corner_label("C", fontsize=fontsize, offset=offset, fontweight='bold')
     tax.left_corner_label("A", fontsize=fontsize, offset=offset, fontweight='bold')
-    if Sentido=="Contrario al reloj":
+    if Sentido=="Counterclockwise":
         tax.left_axis_label("A", fontsize=fontsize, fontweight='bold', offset=offset)
         tax.right_axis_label("C", fontsize=fontsize, fontweight='bold',offset=offset)
         tax.bottom_axis_label("B", fontsize=fontsize, fontweight='bold',offset=offset)
@@ -82,8 +82,8 @@ def checkternary(xA=30, xB=30, Sentido="Contrario al reloj"):
 
         # create the corresponding number of labels (= the text you want to display)
         labels = []
-        labels.append("Composición no válida")
-        labels.append("Se debe cumplir: $x_A + x_B \\leq 100$")
+        labels.append("Invalid composition")
+        labels.append("It must be fulfilled: $x_A + x_B \\leq 100$")
         legend_properties = {'weight':'bold'}
         plt.legend(handles, labels, loc='best', fontsize='x-large',
                   fancybox=True, framealpha=0.5, facecolor='tab:orange',
@@ -97,7 +97,7 @@ def checkternary(xA=30, xB=30, Sentido="Contrario al reloj"):
     P=np.array((xB, xC, xA))
     tax.scatter([P], s=25, color='m')
 
-    if Sentido=="Como el reloj":
+    if Sentido=="Clockwise":
         P2=np.array((100-xA, 0, xA))
         tax.line(P,P2, linestyle=':', color='r')
         tax.annotate("$x_A$", (P+P2)/2, ha='left', va='bottom', color='r', fontsize=15)
@@ -177,8 +177,8 @@ def checklever(F1=100, F2=100, xA1=30, xB1=30, xA2=60, xB2=60):
 
         # create the corresponding number of labels (= the text you want to display)
         labels = []
-        labels.append("Composición no válida")
-        labels.append("Se debe cumplir:")
+        labels.append("Invalid composition")
+        labels.append("It must be fulfilled:")
         labels.append("$x_{A1} + x_{B1} \\leq 100$")
         labels.append("$x_{A2} + x_{B2} \\leq 100$")
         legend_properties = {'weight':'bold'}
@@ -297,8 +297,8 @@ def checkbinodal(xA=30, xB=30):
 
         # create the corresponding number of labels (= the text you want to display)
         labels = []
-        labels.append("Composición no válida")
-        labels.append("Se debe cumplir: $x_A + x_B \\leq 100$")
+        labels.append("Invalid composition")
+        labels.append("It must be fulfilled: $x_A + x_B \\leq 100$")
         legend_properties = {'weight':'bold'}
         plt.legend(handles, labels, loc='best', fontsize='x-large',
                   fancybox=True, framealpha=0.5, facecolor='tab:orange',
@@ -322,8 +322,8 @@ def checkbinodal(xA=30, xB=30):
 
         # create the corresponding number of labels (= the text you want to display)
         labels = []
-        labels.append("M fuera de curva binodal")
-        labels.append("Extracción imposible")
+        labels.append("M out of binodal curve")
+        labels.append("Impossible extraction")
         legend_properties = {'weight':'bold'}
         plt.legend(handles, labels, loc='best', fontsize='x-large',
                   fancybox=True, framealpha=0.5, facecolor='tab:red',
@@ -336,8 +336,8 @@ def checkbinodal(xA=30, xB=30):
 
         # create the corresponding number of labels (= the text you want to display)
         labels = []
-        labels.append("M dentro de la curva binodal")
-        labels.append("Extracción posible")
+        labels.append("M within the binodal curve")
+        labels.append("Possible extraction")
         legend_properties = {'weight':'bold'}
         plt.legend(handles, labels, loc='best', fontsize='x-large',
                   fancybox=True, framealpha=0.5, facecolor='tab:green',
@@ -433,8 +433,8 @@ def checkreparto(xA=30, xB=30):
 
         # create the corresponding number of labels (= the text you want to display)
         labels = []
-        labels.append("F fuera de curva binodal")
-        labels.append("Extracción imposible")
+        labels.append("F out of binodal curve")
+        labels.append("Impossible extraction")
         legend_properties = {'weight':'bold'}
         plt.legend(handles, labels, loc='best', fontsize='x-large',
                   fancybox=True, framealpha=0.5, facecolor='tab:red',
@@ -603,8 +603,8 @@ def checkextraccionsimple(Fx=30, FQ=100, SQ=100):
 
         # create the corresponding number of labels (= the text you want to display)
         labels = []
-        labels.append("M fuera de curva binodal")
-        labels.append("Extracción imposible")
+        labels.append("M out of binodal curve")
+        labels.append("Impossible extraction")
         legend_properties = {'weight':'bold'}
         plt.legend(handles, labels, loc='best', fontsize='x-large',
                   fancybox=True, framealpha=0.5, facecolor='tab:orange',
