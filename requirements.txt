@@ -2,6 +2,6 @@ numpy
 matplotlib
 scipy
 ipywidgets
-ternary
+python-ternary
 pandas
 sympy
